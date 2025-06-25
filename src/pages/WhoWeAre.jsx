@@ -64,14 +64,12 @@ const AboutUs = React.forwardRef((props, ref) => {
                 id={`header-${index}`}
                 relations={
                   hoveredIndex === index
-                    ? [
-                        {
-                          targetId: `subtext-${index}-0`,
-                          targetAnchor: "left",
-                          sourceAnchor: "right",
-                          style: { strokeColor: "black", strokeWidth: 1 },
-                        },
-                      ]
+                    ? subpoints[label].map((_, i) => ({
+                        targetId: `subtext-${index}-${i}`,
+                        targetAnchor: "left",
+                        sourceAnchor: "right",
+                        style: { strokeColor: "black", strokeWidth: 1 },
+                      }))
                     : []
                 }
               >
@@ -107,7 +105,7 @@ const AboutUs = React.forwardRef((props, ref) => {
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
+                  transition={{ duration: 0.3 }}
                   className="flex flex-col gap-4 ml-auto"
                 >
                   {subpoints[label].map((text, i) => (
@@ -116,6 +114,7 @@ const AboutUs = React.forwardRef((props, ref) => {
                         className="flex items-center gap-2"
                         // id={`subtext-${i}`}
                       >
+                        <FiArrowRight className="text-gray-400" />
                         <span className="text-sm text-gray-700">{text}</span>
                       </div>
                     </ArcherElement>
