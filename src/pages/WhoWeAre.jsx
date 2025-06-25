@@ -35,7 +35,16 @@ const AboutUs = React.forwardRef((props, ref) => {
   const labels = Object.keys(subpoints);
 
   return (
-    <ArcherContainer>
+    <ArcherContainer
+      strokeColor="black"
+      strokeWidth={2}
+      endShape={{
+        arrow: {
+          arrowLength: 10,
+          arrowThickness: 8,
+        },
+      }}
+    >
       <section
         ref={(node) => {
           localRef.current = node;
@@ -57,19 +66,21 @@ const AboutUs = React.forwardRef((props, ref) => {
               }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              className={`relative p-6 bg-gray-100 rounded-2xl shadow-md transform duration-300 hover:shadow-xl overflow-hidden flex items-center justify-between gap-6 ${cornerOrigins[index]} min-h-[160px]`}
+              className={`relative p-6 bg-gray-100 rounded-2xl shadow-md transform duration-300 hover:shadow-xl flex items-center justify-between gap-6 ${cornerOrigins[index]} min-h-[160px]`}
             >
               {/* Animated Label Heading */}
               <ArcherElement
                 id={`header-${index}`}
-                relations={[
-                  {
-                    targetId: `subtext-${index}-0`,
-                    targetAnchor: "left",
-                    sourceAnchor: "right",
-                    style: { strokeColor: "black", strokeWidth: 1 },
-                  },
-                ]}
+                relations={
+                  hoveredIndex === index
+                    ? subpoints[label].map((_, i) => ({
+                        targetId: `subtext-${index}-${i}`,
+                        targetAnchor: "left",
+                        sourceAnchor: "right",
+                        style: { strokeColor: "#374151", strokeWidth: 2 },
+                      }))
+                    : []
+                }
               >
                 <motion.h3
                   animate={
@@ -103,16 +114,16 @@ const AboutUs = React.forwardRef((props, ref) => {
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
+                  transition={{ duration: 0.3 }}
                   className="flex flex-col gap-4 ml-auto"
                 >
                   {subpoints[label].map((text, i) => (
-                    <ArcherElement id={`subtext-${index}-${i}`}>
+                    <ArcherElement key={i} id={`subtext-${index}-${i}`}>
                       <div
-                        key={i}
                         className="flex items-center gap-2"
                         // id={`subtext-${i}`}
                       >
+                        <FiArrowRight className="text-gray-400" />
                         <span className="text-sm text-gray-700">{text}</span>
                       </div>
                     </ArcherElement>
