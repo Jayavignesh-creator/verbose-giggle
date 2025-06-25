@@ -62,14 +62,18 @@ const AboutUs = React.forwardRef((props, ref) => {
               {/* Animated Label Heading */}
               <ArcherElement
                 id={`header-${index}`}
-                relations={[
-                  {
-                    targetId: `subtext-${index}-0`,
-                    targetAnchor: "left",
-                    sourceAnchor: "right",
-                    style: { strokeColor: "black", strokeWidth: 1 },
-                  },
-                ]}
+                relations={
+                  hoveredIndex === index
+                    ? [
+                        {
+                          targetId: `subtext-${index}-0`,
+                          targetAnchor: "left",
+                          sourceAnchor: "right",
+                          style: { strokeColor: "black", strokeWidth: 1 },
+                        },
+                      ]
+                    : []
+                }
               >
                 <motion.h3
                   animate={
@@ -107,9 +111,8 @@ const AboutUs = React.forwardRef((props, ref) => {
                   className="flex flex-col gap-4 ml-auto"
                 >
                   {subpoints[label].map((text, i) => (
-                    <ArcherElement id={`subtext-${index}-${i}`}>
+                    <ArcherElement key={i} id={`subtext-${index}-${i}`}>
                       <div
-                        key={i}
                         className="flex items-center gap-2"
                         // id={`subtext-${i}`}
                       >
