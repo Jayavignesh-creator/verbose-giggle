@@ -35,7 +35,16 @@ const AboutUs = React.forwardRef((props, ref) => {
   const labels = Object.keys(subpoints);
 
   return (
-    <ArcherContainer>
+    <ArcherContainer
+      strokeColor="black"
+      strokeWidth={2}
+      endShape={{
+        arrow: {
+          arrowLength: 10,
+          arrowThickness: 8,
+        },
+      }}
+    >
       <section
         ref={(node) => {
           localRef.current = node;
@@ -57,7 +66,7 @@ const AboutUs = React.forwardRef((props, ref) => {
               }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              className={`relative p-6 bg-gray-100 rounded-2xl shadow-md transform duration-300 hover:shadow-xl overflow-hidden flex items-center justify-between gap-6 ${cornerOrigins[index]} min-h-[160px]`}
+              className={`relative p-6 bg-gray-100 rounded-2xl shadow-md transform duration-300 hover:shadow-xl flex items-center justify-between gap-6 ${cornerOrigins[index]} min-h-[160px]`}
             >
               {/* Animated Label Heading */}
               <ArcherElement
@@ -68,7 +77,7 @@ const AboutUs = React.forwardRef((props, ref) => {
                         targetId: `subtext-${index}-${i}`,
                         targetAnchor: "left",
                         sourceAnchor: "right",
-                        style: { strokeColor: "black", strokeWidth: 1 },
+                        style: { strokeColor: "#374151", strokeWidth: 2 },
                       }))
                     : []
                 }
