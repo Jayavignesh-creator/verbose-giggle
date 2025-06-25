@@ -50,7 +50,7 @@ const Header = () => {
 
   return (
     <div
-      className="relative bg-white shadow-md z-50"
+      className="sticky top-0 bg-white shadow-sm z-50"
       onMouseLeave={() => setParentMenu(null)}
     >
       {/* Top Header Bar */}
@@ -86,32 +86,30 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Dropdown Content Area */}
+      {/* Dropdown Content Area (Fade-in, Overlay) */}
       <div
-        className={`w-full overflow-hidden transition-all duration-200 ${
+        className={`absolute left-0 top-[70px] w-full bg-white border-y border-gray-200 z-40 px-6 transition-opacity duration-300 ${
           parentMenu
-            ? "min-h-[100px] opacity-100 py-6"
-            : "min-h-0 opacity-0 py-0"
+            ? "opacity-100 pointer-events-auto py-6"
+            : "opacity-0 pointer-events-none py-0"
         }`}
       >
-        <div className="px-6">
-          {/* Render Submenus only for matched item */}
-          {navItems
-            .filter((item) => item.name === parentMenu && item.subMenu)
-            .map((item, index) => (
-              <div key={`${item.name}-${index}`} className="flex gap-8">
-                {item.subMenu.map((sub) => (
-                  <a
-                    key={sub.name}
-                    href={sub.href}
-                    className="text-gray-800 hover:text-blue-600 text-sm"
-                  >
-                    {sub.name}
-                  </a>
-                ))}
-              </div>
-            ))}
-        </div>
+        {/* Render Submenus only for matched item */}
+        {navItems
+          .filter((item) => item.name === parentMenu && item.subMenu)
+          .map((item, index) => (
+            <div key={`${item.name}-${index}`} className="flex gap-8">
+              {item.subMenu.map((sub) => (
+                <a
+                  key={sub.name}
+                  href={sub.href}
+                  className="text-gray-800 hover:text-blue-600 text-sm"
+                >
+                  {sub.name}
+                </a>
+              ))}
+            </div>
+          ))}
       </div>
     </div>
   );

@@ -11,6 +11,9 @@ export default {
           light: "#ffffff",
         },
       },
+      animation: {
+        pulse: "pulse 1s infinite",
+      },
     },
   },
   plugins: [],
