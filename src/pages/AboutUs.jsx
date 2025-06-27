@@ -4,7 +4,7 @@ import React from "react";
 const AboutUs = React.forwardRef((props, ref) => (
   <section
     ref={ref}
-    className="min-h-screen flex items-center px-6 md:px-20 py-20"
+    className="min-h-screen bg-gray-50 flex items-center px-6 md:px-20 py-20"
   >
     <div className="max-w-3xl">
       <h2 className="text-7xl font-bold text-gray-900 mb-4">
