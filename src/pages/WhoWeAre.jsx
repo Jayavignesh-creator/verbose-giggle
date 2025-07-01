@@ -46,10 +46,10 @@ const AboutUs = React.forwardRef((props, ref) => {
     >
       <div className="w-full flex justify-start mb-16">
         <div className="text-left w-full">
-          <h2 className="text-5xl font-bold text-gray-800 mb-4">
+          <h2 className="text-7xl font-bold text-gray-800 mb-4">
             From Strategy to Systems
           </h2>
-          <h2 className="text-5xl font-bold text-primary-light mb-14">
+          <h2 className="text-7xl font-bold text-primary-light mb-14">
             We Deliver Intelligence That Performs
           </h2>
           <p className="text-gray-600 text-2xl w-full">
@@ -114,7 +114,7 @@ const AboutUs = React.forwardRef((props, ref) => {
 
                     return (
                       <div key={i}>
-                        <h4 className="text-[12px] font-bold text-primary-light mb-1 leading-snug">
+                        <h4 className="text-base font-bold text-primary-light mb-1 leading-snug">
                           {hasAmpersand ? (
                             <>
                               {parts[0].trim()} &<br />
