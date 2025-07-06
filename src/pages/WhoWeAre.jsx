@@ -1,7 +1,13 @@
-import React, { useState } from "react";
-import innovationImg from "../assets/Innovation-amico.png";
+import React, { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 
-// Each object must have a unique label as key
+// Import your images
+import shapeAI from "../assets/innovation-pana.png";
+import blocks from "../assets/blocks.png";
+import strategy from "../assets/strategy.png";
+import privacy from "../assets/privacy-policy.png";
+import results from "../assets/deliver-results-1.png";
+
 const subpoints = {
   "SHAPE YOUR AI VISION": {
     "ANALYTICS & DATA STRATEGY":
@@ -35,16 +41,38 @@ const subpoints = {
   },
 };
 
+// Map labels to images
+const cardImages = {
+  "SHAPE YOUR AI VISION": strategy,
+  "BUILD THE FOUNDATION": blocks,
+  "CREATE INTELLIGENCE": shapeAI,
+  "DELIVER RESULTS": results,
+  "AUDIT AI": privacy,
+};
+
 const AboutUs = React.forwardRef((props, ref) => {
   const labels = Object.keys(subpoints);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const textRef = useRef(null);
+  const isTextInView = useInView(textRef, { once: false, margin: "-100px" });
+
+  const cardsRef = useRef(null);
+  const areCardsInView = useInView(cardsRef, { once: false, margin: "-100px" });
 
   return (
     <section
       ref={ref}
       className="min-h-screen flex flex-col items-center justify-center px-6 md:px-20 py-20 bg-white"
     >
-      <div className="w-full flex justify-start mb-16">
+      {/* Header Text */}
+      <motion.div
+        ref={textRef}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isTextInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ type: "spring", stiffness: 60, damping: 14 }}
+        className="w-full flex justify-start mb-16"
+      >
         <div className="text-left w-full">
           <h2 className="text-7xl font-bold text-gray-800 mb-4">
             From Strategy to Systems
@@ -57,36 +85,48 @@ const AboutUs = React.forwardRef((props, ref) => {
             into intelligent, scalable solutions.
           </p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 w-full min-w-[276px]">
+      {/* Card Grid */}
+      <div
+        ref={cardsRef}
+        className="grid grid-cols-1 md:grid-cols-5 gap-6 w-full min-w-[276px]"
+      >
         {labels.map((label, index) => {
           const isHovered = hoveredIndex === index;
           const nested = subpoints[label];
+          const imageSrc = cardImages[label];
 
           return (
-            <div
+            <motion.div
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="relative bg-gray-50 h-[420px] transition-all duration-300 transform hover:scale-[1.05] ease-in-out"
+              initial={{ opacity: 0, y: 50 }}
+              animate={
+                areCardsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+              }
+              transition={{
+                type: "spring",
+                stiffness: 60,
+                damping: 18,
+                delay: index * 0.1,
+              }}
+              className="relative bg-gray-50 h-[420px] transition-all duration-300 transform hover:scale-[1.05] ease-in-out overflow-hidden flex items-center justify-center px-6"
             >
-              {/* Image above label (only visible when not hovered) */}
-              {/* <div
-                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
-                  isHovered ? "opacity-0" : "opacity-100"
-                }`}
-              >
+              {/* Image centered inside card */}
+              {imageSrc && (
                 <img
-                  src={innovationImg}
-                  alt="Innovation"
-                  style={{ height: "200px", width: "200px" }}
-                  className="object-contain"
+                  src={imageSrc}
+                  alt={label}
+                  className={`w-[250px] h-[250px] object-contain transition-opacity duration-300 absolute top-12 z-0 ${
+                    isHovered ? "opacity-0" : "opacity-100"
+                  }`}
                 />
-              </div> */}
+              )}
 
-              {/* Bottom Right Label (Disappears on Hover) */}
-              <div className="absolute bottom-5 right-4 flex justify-center transition-all duration-300">
+              {/* Bottom right label */}
+              <div className="absolute bottom-5 right-4 flex justify-center transition-all duration-300 z-10">
                 <div
                   className={`transition-opacity duration-300 ${
                     isHovered ? "opacity-0" : "opacity-100"
@@ -99,12 +139,12 @@ const AboutUs = React.forwardRef((props, ref) => {
                 </div>
               </div>
 
-              {/* Nested Subpoints (Appear on Hover) */}
+              {/* Hovered content */}
               <div
-                className={`absolute top-6 left-0 w-full h-full px-6 transition-all duration-500 ${
+                className={`absolute top-6 left-0 w-full h-full transition-all duration-500 z-10 ${
                   isHovered
-                    ? "opacity-100 translate-x-0 delay-150"
-                    : "opacity-0 translate-x-10 pointer-events-none"
+                    ? "opacity-100 translate-y-0 delay-100"
+                    : "opacity-0 translate-y-10 pointer-events-none"
                 }`}
               >
                 <div className="flex flex-col gap-6 mt-4">
@@ -113,7 +153,7 @@ const AboutUs = React.forwardRef((props, ref) => {
                     const hasAmpersand = parts.length === 2;
 
                     return (
-                      <div key={i}>
+                      <div key={i} className="px-6">
                         <h4 className="text-base font-bold text-primary-light mb-1 leading-snug">
                           {hasAmpersand ? (
                             <>
@@ -132,7 +172,7 @@ const AboutUs = React.forwardRef((props, ref) => {
                   })}
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>

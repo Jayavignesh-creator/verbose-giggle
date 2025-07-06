@@ -87,7 +87,7 @@ const Header = () => {
           {/* Contact Us Button */}
           <a
             href="#contact" // Make sure this matches your ContactUs section's ref or ID
-            className="bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded transition duration-300"
+            className="bg-primary-light hover:bg-primary-light text-white font-semibold px-5 py-2 rounded transition duration-300"
           >
             Contact Us
           </a>
