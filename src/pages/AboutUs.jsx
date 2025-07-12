@@ -19,11 +19,11 @@ const AboutUs = React.forwardRef((props, ref) => {
         transition={{ type: "spring", stiffness: 60, damping: 14 }}
         className="max-w-3xl md:w-1/2"
       >
-        <h2 className="text-5xl md:text-7xl font-bold text-gray-900 mb-4">
+        <h2 className="text-5xl md:text-5xl font-bold text-gray-900 mb-4">
           Science of Decisions.
           <span className="block text-primary-light">Art of Impact</span>
         </h2>
-        <p className="text-2xl text-gray-700">
+        <p className="text-xl text-gray-700">
           We build AI solutions — from Analytics to Agentic AI — that turn data
           into decisions, accelerate innovation, and deliver measurable impact
           across industries and operations.

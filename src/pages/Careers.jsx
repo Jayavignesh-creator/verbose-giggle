@@ -29,13 +29,13 @@ const Careers = React.forwardRef((props, ref) => {
           transition={{ type: "spring", stiffness: 60, damping: 14 }}
           className="lg:w-1/2"
         >
-          <h2 className="text-7xl font-bold mb-6">
+          <h2 className="text-5xl font-bold mb-6">
             <span className="text-black">Build What’s Next,</span>
             <br />
             <span className="text-primary-light">With Us</span>
           </h2>
 
-          <p className="text-gray-700 text-2xl leading-relaxed mb-12">
+          <p className="text-gray-700 text-xl leading-relaxed mb-12">
             Join a team where curiosity meets capability. At the forefront of AI
             innovation, we’re building solutions that shape industries — and
             careers. Whether you're a data scientist, ML engineer, tinkerer, or

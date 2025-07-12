@@ -74,13 +74,13 @@ const AboutUs = React.forwardRef((props, ref) => {
         className="w-full flex justify-start mb-16"
       >
         <div className="text-left w-full">
-          <h2 className="text-7xl font-bold text-gray-800 mb-4">
+          <h2 className="text-5xl font-bold text-gray-800 mb-4">
             From Strategy to Systems
           </h2>
-          <h2 className="text-7xl font-bold text-primary-light mb-14">
+          <h2 className="text-5xl font-bold text-primary-light mb-6">
             We Deliver Intelligence That Performs
           </h2>
-          <p className="text-gray-600 text-2xl w-full">
+          <p className="text-gray-600 text-xl w-full">
             We offer end-to-end AI and data services to turn your business goals
             into intelligent, scalable solutions.
           </p>

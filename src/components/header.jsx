@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [parentMenu, setParentMenu] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
     // {
@@ -52,7 +55,14 @@ const Header = () => {
       <div className="flex justify-between items-center px-6 py-4 h-[70px]">
         {/* Logo */}
         <div className="flex flex-col items-start">
-          <div className="text-2xl font-bold text-black">QUBERNEU</div>
+          <div
+            className="text-xl font-bold text-black cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            QUBERNEU
+          </div>
         </div>
 
         {/* Nav + Button */}
@@ -85,12 +95,16 @@ const Header = () => {
           </div>
 
           {/* Contact Us Button */}
-          <a
-            href="#contact" // Make sure this matches your ContactUs section's ref or ID
-            className="bg-primary-light hover:bg-primary-light text-white font-semibold px-5 py-2 rounded transition duration-300"
-          >
-            Contact Us
-          </a>
+          {location.pathname !== "/contactus" && (
+            <a
+              className="bg-primary-light hover:bg-primary-light text-white font-semibold px-5 py-2 rounded transition duration-300 cursor-pointer"
+              onClick={() => {
+                navigate("/contactus");
+              }}
+            >
+              Contact Us
+            </a>
+          )}
         </div>
       </div>
 

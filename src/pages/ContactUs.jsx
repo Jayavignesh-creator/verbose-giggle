@@ -1,10 +1,12 @@
 // ContactUs.jsx
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const ContactUs = React.forwardRef((props, ref) => {
   const contentRef = useRef(null);
   const isInView = useInView(contentRef, { once: false, margin: "-100px" });
+  const navigate = useNavigate();
 
   return (
     <section
@@ -17,18 +19,23 @@ const ContactUs = React.forwardRef((props, ref) => {
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ type: "spring", stiffness: 60, damping: 14 }}
       >
-        <h2 className="text-3xl md:text-7xl font-bold mb-6">
+        <h2 className="text-3xl md:text-5xl font-bold mb-6">
           <span className="text-black">Let’s Shape </span>
           <span className="text-primary-light">What’s Next</span>
         </h2>
 
-        <p className="text-2xl text-gray-800 mb-12 max-w-3xl leading-relaxed">
+        <p className="text-xl text-gray-800 mb-12 max-w-3xl leading-relaxed">
           Looking to power your next move with AI? <br />
           Whether it’s a project, partnership or just a conversation — <br />
           we’re here, and we’re listening.
         </p>
 
-        <button className="bg-primary-light hover:bg-primary-light text-white font-bold text-lg md:text-xl px-10 py-6 shadow transition duration-300">
+        <button
+          onClick={() => {
+            navigate("/contactus");
+          }}
+          className="bg-primary-light hover:bg-primary-light text-white font-bold text-lg md:text-xl px-10 py-6 shadow transition duration-300"
+        >
           Contact Us
         </button>
       </motion.div>

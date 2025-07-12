@@ -37,14 +37,14 @@ const Partners = React.forwardRef((props, ref) => {
       >
         {/* Left Side Heading */}
         <div className="lg:w-1/2">
-          <h2 className="text-7xl font-bold text-primary-light leading-tight">
+          <h2 className="text-5xl font-bold text-primary-light leading-tight">
             Trusted by the World’s <br />
             Leading Platforms
           </h2>
         </div>
 
         {/* Right Side Paragraph */}
-        <div className="lg:w-1/2 text-gray-700 text-2xl">
+        <div className="lg:w-1/2 text-gray-700 text-xl">
           <p className="mb-6">
             We collaborate with the world's most trusted platforms and pioneers
             in AI, cloud, and analytics — so you get future-ready solutions,

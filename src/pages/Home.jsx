@@ -10,7 +10,7 @@ import ContactUs from "./ContactUs";
 import Footer from "./Footer";
 
 // Typewriter animation component
-const Typewriter = ({ text, delay = 0.2, className = "", onComplete }) => {
+const Typewriter = ({ text, delay = 0.1, className = "", onComplete }) => {
   const letters = text.split("");
 
   const container = {
@@ -57,9 +57,6 @@ export default function Home() {
   const [writer2Done, setWriter2Done] = useState(false);
   const [showParagraph, setShowParagraph] = useState(false);
 
-  const containerRef = useRef(null);
-  const currentIndexRef = useRef(0);
-  const isScrollingRef = useRef(false);
   const sectionRefs = useRef([]);
 
   useEffect(() => {
@@ -77,45 +74,10 @@ export default function Home() {
     }
   }, [writer1Done, writer2Done]);
 
-  useEffect(() => {
-    const handleWheel = (e) => {
-      if (isScrollingRef.current) return;
-
-      e.preventDefault();
-
-      const direction = e.deltaY > 0 ? 1 : -1;
-      const nextIndex = currentIndexRef.current + direction;
-
-      if (nextIndex < 0 || nextIndex >= sectionRefs.current.length) return;
-
-      isScrollingRef.current = true;
-      currentIndexRef.current = nextIndex;
-
-      sectionRefs.current[nextIndex]?.scrollIntoView({
-        behavior: "smooth",
-      });
-
-      setTimeout(() => {
-        isScrollingRef.current = false;
-      }, 1000);
-    };
-
-    const container = containerRef.current;
-    container?.addEventListener("wheel", handleWheel, { passive: false });
-
-    return () => {
-      container?.removeEventListener("wheel", handleWheel);
-    };
-  }, []);
-
   return (
     <>
       <Header />
-      <div
-        ref={containerRef}
-        className="h-screen"
-        style={{ scrollBehavior: "smooth" }}
-      >
+      <div className="h-screen" style={{ scrollBehavior: "smooth" }}>
         <div className="h-screen">
           {/* Hero Section */}
           <section
@@ -124,7 +86,7 @@ export default function Home() {
           >
             <div className="w-full max-w-4xl text-center relative">
               <div className="h-[24rem] flex flex-col items-center justify-center space-y-6">
-                <div className="text-6xl md:text-8xl font-extrabold text-gray-900 leading-tight">
+                <div className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight">
                   {startTypewriter && (
                     <Typewriter
                       text="Data that drives,"
@@ -137,7 +99,7 @@ export default function Home() {
                   <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: -20 }}
-                    className="text-5xl md:text-8xl font-extrabold text-primary-light"
+                    className="text-5xl md:text-7xl font-extrabold text-primary-light"
                   >
                     <Typewriter
                       text="Decisions that win"
@@ -167,7 +129,6 @@ export default function Home() {
                 animate={showParagraph ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
                 onClick={() => {
-                  currentIndexRef.current = 1;
                   sectionRefs.current[1]?.scrollIntoView({
                     behavior: "smooth",
                   });

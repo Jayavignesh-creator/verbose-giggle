@@ -10,7 +10,7 @@ const Footer = React.forwardRef((props, ref) => {
       <div className="flex flex-col lg:flex-row justify-between gap-12 mb-6">
         {/* Socials Section - Left */}
         <div className="flex flex-col gap-6">
-          <div className="flex gap-6 text-2xl text-gray-800 opacity-20">
+          <div className="flex gap-6 text-xl text-gray-800 opacity-20">
             <a href="#" aria-label="LinkedIn">
               <FaLinkedinIn />
             </a>
@@ -25,7 +25,7 @@ const Footer = React.forwardRef((props, ref) => {
 
         {/* QUBERNEU on top-right */}
         <div className="text-right">
-          <h2 className="text-2xl font-bold text-gray-800">QUBERNEU</h2>
+          <h2 className="text-xl font-bold text-gray-800">QUBERNEU</h2>
         </div>
       </div>
 
