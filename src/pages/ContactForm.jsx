@@ -57,7 +57,7 @@ const ContactForm = () => {
 
     try {
       const response = await fetch(
-        "https://qmail-server.onrender.com/contact",
+        "https://mailer-api-181290223815.asia-south1.run.app/contact",
         {
           method: "POST",
           headers: {
